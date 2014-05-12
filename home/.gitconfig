@@ -1,0 +1,38 @@
+[user]
+	name = Alex Davis
+	email = alex2006hw@gmail.com
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.gitignore
+  editor = /usr/local/bin/vim
+  quotepath = false
+[init]
+  tepmlatedir = ~/.gittemplate
+[apply]
+  whitespace = nowarn
+[difftool]
+  prompt = false
+[github]
+  user = alex2006hw
+  password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
+[branch]
+  autosetuprebase = always
+[mergetool]
+	keepBackup = true
+[diff]
+  tool = vimdiff
+	algorithm = patience
+[credential]
+	helper = osxkeychain
+[rerere]
+	enabled = true
+[push]
+	default = simple
+[merge]
+	conflictstyle = diff3
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true

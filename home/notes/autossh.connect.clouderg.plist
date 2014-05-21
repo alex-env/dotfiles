@@ -1,0 +1,63 @@
+<!-- 
+######################################
+# Start the MongoDB server by hand
+# autossh -M 29001 -f -N -R 6100:localhost:22 alexd@postmaster.clouderg.com
+# Save this file at /Library/LaunchAgents/autossh.connect.clouderg.plist
+######################################
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>autossh.connect.cluderg</string>
+
+    <key>OnDemand</key>
+    <false/>
+
+    <key>UserName</key>
+    <string>alexd</string>
+
+    <key>GroupName</key>
+    <string>staff</string>
+
+    <key>ProgramArguments</key>
+    <array>
+            <string>/usr/local/bin/autossh</string>
+            <string>-M</string>
+            <string>29001</string>
+            <string>-f</string>
+            <string>-N</string>
+            <string>-R</string>
+            <string>6100:localhost:22</string>
+            <string>alexd@postmaster.clouderg.com</string>
+    </array>
+</dict>
+</plist>
+<!--
+######################################
+# then sudo launchctl load /Library/LaunchAgents/autossh.connect.clouderg.plist
+######################################
+ autossh -M29001  -f -R 8081:localhost:80 my.linuxbox.at.home
+         |______||_||_||___||________|__|__________________|
+            |     |  |   |      |      |          `---The box we are connecting to.  Must be running sshd.
+            |     |  |   |      |      |
+            |     |  |   |      |      `--------------The port on localhost we want to access from my.linuxbox.at.home
+            |     |  |   |      |
+            |     |  |   |      `---------------------The host where the forward will go, relative 
+            |     |  |   |                            to the box initiating the tunnel; i.e., localhost
+            |     |  |   |                            means the box where this command is run.
+            |     |  |   |
+            |     |  |   `----------------------------This is the port my.linuxbox.at.home listens 
+            |     |  |                                on to forward through the tunnel
+            |     |  | 
+            |     |  `--------------------------------Tells ssh to forward from the remote
+            |     |                                   host to the local host
+            |     |
+            |     `-----------------------------------Causes autossh to drop into the background before execution
+            `-----------------------------------------Use this monitoring port (must be above 1024 and not currently in use)
+
+I have found that you need to add a -N to the ssh options also a -q won't hurt.
+
+autossh -M 29001 -q -f -N -R 8081:localhost:80 my.linuxbox.at.home
+-->

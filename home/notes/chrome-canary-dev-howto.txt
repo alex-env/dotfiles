@@ -1,0 +1,14 @@
+download chrome-canary
+Open chrome://flags/ and enable Experimental Extension APIs
+install : http://userscripts.ru/js/chrome-devtools-autosave/latest.crx
+nave install latest
+nave use latest
+npm install -g autosave
+install rbenv 
+xcode-select --install
+brew update
+brew install rbenv ruby-build
+rbenv init
+rbenv install -l
+
+Run node chrome-devtools-autosave-server/index.js from the command-line and then simply open up a local page you wish to edit. As long as you're accessing it using the file:// scheme, you should be able to easily make changes from inside the Chrome Developer Tools and have them instantly saved to the local CSS or JavaScript copies of those files. It's as simple as that!.
